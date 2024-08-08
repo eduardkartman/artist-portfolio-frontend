@@ -1,0 +1,55 @@
+.artwork-container {
+  background-color: #fff;
+  border: 1px solid #e2e8f0; /* border-gray-300 equivalent */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg equivalent */
+  border-radius: 0.5rem; /* rounded-lg equivalent */
+  margin-bottom: 5%;
+  margin-top: 5%;
+  overflow: hidden;
+}
+
+.artwork-image {
+  width: 400px; /* Explicit width */
+  height: 350px; /* Explicit height */
+  object-fit: cover; /* object-cover equivalent */
+}
+
+.artwork-title {
+  font-size: 1.25rem; /* text-xl equivalent */
+  font-weight: bold;
+  margin-bottom: 0.5rem; /* mb-2 equivalent */
+}
+
+.artwork-description {
+  color: #2d3748; /* text-gray-800 equivalent */
+  margin-bottom: 1rem; /* mb-4 equivalent */
+}
+
+.artwork-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.artwork-button {
+  padding: 0.5rem 1rem; /* px-4 py-2 equivalent */
+  border-radius: 0.375rem; /* rounded-md equivalent */
+  cursor: pointer;
+}
+
+.artwork-button-edit {
+  background-color: #2563eb; /* bg-blue-600 equivalent */
+  color: #fff;
+}
+
+.artwork-button-edit:hover {
+  background-color: #1d4ed8; /* hover:bg-blue-700 equivalent */
+}
+
+.artwork-button-delete {
+  background-color: #dc2626; /* bg-red-600 equivalent */
+  color: #fff;
+}
+
+.artwork-button-delete:hover {
+  background-color: #b91c1c; /* hover:bg-red-700 equivalent */
+}

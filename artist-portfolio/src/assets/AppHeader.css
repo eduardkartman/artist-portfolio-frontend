@@ -1,0 +1,25 @@
+.app-header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.app-header-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
