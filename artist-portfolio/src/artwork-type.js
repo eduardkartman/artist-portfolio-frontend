@@ -1,6 +1,9 @@
 /**
  * @typedef {Object} Artwork
- * @property {string} title - The title of the artwork.
- * @property {string} description - The description of the artwork.
- * @property {string} imageUrl - The URL of the artwork image.
+ * @property {number} id 
+ * @property {string} title 
+ * @property {string} description
+ * @property {string} image_url 
+ * @property {string} linktosite
+ * @property {boolean} status
  */

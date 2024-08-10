@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/AddArtwork.css";
+import apiClient from '../apiClient'; // Import apiClient
 
 /**
  * @param {{ artwork?: Artwork }} props
@@ -9,25 +10,26 @@ function AddArtwork({ artwork }) {
   const [title, setTitle] = useState(artwork?.title || "");
   const [description, setDescription] = useState(artwork?.description || "");
   const [imageUrl, setImageUrl] = useState(artwork?.imageUrl || "");
+  const [linktosite, setLinkToSite] = useState(artwork?.linktosite || ""); // New state for linktosite
+  const [status, setStatus] = useState(artwork?.status || false); // New state for status
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newArtwork = { title, description, imageUrl };
+    const newArtwork = { title, description, imageUrl, linktosite, status }; // Include new fields
 
-    let artworks = JSON.parse(localStorage.getItem("artworks")) || [];
-
-    if (artwork) {
-      // Update existing artwork
-      const index = parseInt(localStorage.getItem("editIndex"), 10);
-      artworks[index] = newArtwork;
-    } else {
-      // Add new artwork
-      artworks.push(newArtwork);
+    try {
+      if (artwork) {
+        // Update existing artwork
+        await apiClient.put(`/artworks/${artwork.id}`, newArtwork);
+      } else {
+        // Add new artwork
+        await apiClient.post('/artworks', newArtwork);
+      }
+      navigate("/");
+    } catch (error) {
+      console.error('Error saving artwork:', error);
     }
-
-    localStorage.setItem("artworks", JSON.stringify(artworks));
-    navigate("/");
   };
 
   return (
@@ -64,6 +66,26 @@ function AddArtwork({ artwork }) {
             className="add-artwork-input"
             required
           />
+        </div>
+        <div className="mb-4">
+          <label className="add-artwork-label">Link to Site</label>
+          <input
+            type="text"
+            value={linktosite}
+            onChange={(e) => setLinkToSite(e.target.value)}
+            className="add-artwork-input"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="add-artwork-label">Status</label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value === "true")}
+            className="add-artwork-input"
+          >
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+          </select>
         </div>
         <button type="submit" className="add-artwork-button">
           {artwork ? "Save Changes" : "Add Artwork"}

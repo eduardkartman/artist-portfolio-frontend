@@ -1,37 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../assets/EditArtwork.css";
+import apiClient from "../apiClient"; // Import apiClient
 
 function EditArtwork() {
-  const navigate = useNavigate();
   const [artwork, setArtwork] = useState({
     title: "",
     description: "",
     imageUrl: "",
+    linktosite: "",
+    status: false
   });
+  const { id } = useParams(); // Get ID from URL
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const index = localStorage.getItem("editIndex");
-    const storedArtworks = JSON.parse(localStorage.getItem("artworks")) || [];
-    if (index !== null && storedArtworks[index]) {
-      setArtwork(storedArtworks[index]);
-    } else {
-      navigate("/"); // Redirect if no artwork found
-    }
-  }, [navigate]);
+    const fetchArtwork = async () => {
+      try {
+        const response = await apiClient.get(`/artworks/${id}`);
+        setArtwork(response.data);
+      } catch (error) {
+        console.error('Error fetching artwork:', error);
+        navigate("/"); // Redirect if artwork not found
+      }
+    };
+
+    fetchArtwork();
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setArtwork((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const index = localStorage.getItem("editIndex");
-    const storedArtworks = JSON.parse(localStorage.getItem("artworks")) || [];
-    storedArtworks[index] = artwork;
-    localStorage.setItem("artworks", JSON.stringify(storedArtworks));
-    navigate("/"); // Redirect after saving
+    try {
+      await apiClient.put(`/artworks/${id}`, artwork);
+      navigate("/"); // Redirect after saving
+    } catch (error) {
+      console.error('Error updating artwork:', error);
+    }
   };
 
   return (
@@ -39,9 +48,7 @@ function EditArtwork() {
       <h2 className="edit-artwork-title">Edit Artwork</h2>
       <form onSubmit={handleSubmit} className="edit-artwork-form">
         <div className="mb-4">
-          <label className="edit-artwork-label" htmlFor="title">
-            Title
-          </label>
+          <label className="edit-artwork-label" htmlFor="title">Title</label>
           <input
             type="text"
             id="title"
@@ -53,9 +60,7 @@ function EditArtwork() {
           />
         </div>
         <div className="mb-4">
-          <label className="edit-artwork-label" htmlFor="description">
-            Description
-          </label>
+          <label className="edit-artwork-label" htmlFor="description">Description</label>
           <textarea
             id="description"
             name="description"
@@ -66,9 +71,7 @@ function EditArtwork() {
           />
         </div>
         <div className="mb-4">
-          <label className="edit-artwork-label" htmlFor="imageUrl">
-            Image URL
-          </label>
+          <label className="edit-artwork-label" htmlFor="imageUrl">Image URL</label>
           <input
             type="text"
             id="imageUrl"
@@ -79,9 +82,31 @@ function EditArtwork() {
             required
           />
         </div>
-        <button type="submit" className="edit-artwork-button">
-          Save Changes
-        </button>
+        <div className="mb-4">
+          <label className="edit-artwork-label" htmlFor="linktosite">Link to Site</label>
+          <input
+            type="text"
+            id="linktosite"
+            name="linktosite"
+            value={artwork.linktosite}
+            onChange={handleChange}
+            className="edit-artwork-input"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="edit-artwork-label" htmlFor="status">Status</label>
+          <select
+            id="status"
+            name="status"
+            value={artwork.status}
+            onChange={handleChange}
+            className="edit-artwork-input"
+          >
+            <option value={true}>Active</option>
+            <option value={false}>Inactive</option>
+          </select>
+        </div>
+        <button type="submit" className="edit-artwork-button">Save Changes</button>
       </form>
     </div>
   );

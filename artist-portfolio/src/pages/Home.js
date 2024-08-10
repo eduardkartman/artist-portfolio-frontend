@@ -3,26 +3,40 @@ import Artwork from "../components/Artwork";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import apiClient from "../apiClient";
 import "../assets/Home.css";
 
 function Home() {
   const [artworks, setArtworks] = useState([]);
   const navigate = useNavigate();
 
+  // Fetch artworks from backend
   useEffect(() => {
-    const storedArtworks = JSON.parse(localStorage.getItem("artworks")) || [];
-    setArtworks(storedArtworks);
+    const fetchArtworks = async () => {
+      try {
+        const response = await apiClient.get('/artworks');
+        setArtworks(response.data);
+      } catch (error) {
+        console.error('Error fetching artworks:', error);
+      }
+    };
+
+    fetchArtworks();
   }, []);
 
-  const handleDeleteArtwork = (index) => {
-    const updatedArtworks = artworks.filter((_, i) => i !== index);
-    setArtworks(updatedArtworks);
-    localStorage.setItem("artworks", JSON.stringify(updatedArtworks));
+  // Delete artwork and update state
+  const handleDeleteArtwork = async (id) => {
+    try {
+      await apiClient.delete(`/artworks/${id}`);
+      setArtworks(artworks.filter((artwork) => artwork.id !== id));
+    } catch (error) {
+      console.error('Error deleting artwork:', error);
+    }
   };
 
-  const handleEditArtwork = (index) => {
-    localStorage.setItem("editIndex", index);
-    navigate("/edit"); // Navigate to edit page
+  // Navigate to edit page
+  const handleEditArtwork = (id) => {
+    navigate(`/edit/${id}`); // Navigate to edit page with ID in URL
   };
 
   return (
@@ -42,14 +56,14 @@ function Home() {
               Add New Artwork
             </Link>
             <Row>
-              {artworks.map((artwork, index) => (
-                <Col key={index} md={4} sm={6}>
+              {artworks.map((artwork) => (
+                <Col key={artwork.id} md={4} sm={6}>
                   <Artwork
                     title={artwork.title}
                     description={artwork.description}
                     imageUrl={artwork.imageUrl}
-                    onDelete={() => handleDeleteArtwork(index)}
-                    onEdit={() => handleEditArtwork(index)}
+                    onDelete={() => handleDeleteArtwork(artwork.id)}
+                    onEdit={() => handleEditArtwork(artwork.id)}
                   />
                 </Col>
               ))}
