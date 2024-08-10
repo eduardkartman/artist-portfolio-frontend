@@ -10,7 +10,6 @@ function Home() {
   const [artworks, setArtworks] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch artworks from backend
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
@@ -24,7 +23,6 @@ function Home() {
     fetchArtworks();
   }, []);
 
-  // Delete artwork and update state
   const handleDeleteArtwork = async (id) => {
     try {
       await apiClient.delete(`/artworks/${id}`);
@@ -34,9 +32,8 @@ function Home() {
     }
   };
 
-  // Navigate to edit page
   const handleEditArtwork = (id) => {
-    navigate(`/edit/${id}`); // Navigate to edit page with ID in URL
+    navigate(`/edit/${id}`);
   };
 
   return (

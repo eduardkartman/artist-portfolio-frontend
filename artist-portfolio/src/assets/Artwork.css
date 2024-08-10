@@ -1,28 +1,28 @@
 .artwork-container {
   background-color: #fff;
-  border: 1px solid #e2e8f0; /* border-gray-300 equivalent */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg equivalent */
-  border-radius: 0.5rem; /* rounded-lg equivalent */
+  border: 1px solid #e2e8f0; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 0.5rem; 
   margin-bottom: 5%;
   margin-top: 5%;
   overflow: hidden;
 }
 
 .artwork-image {
-  width: 400px; /* Explicit width */
-  height: 350px; /* Explicit height */
-  object-fit: cover; /* object-cover equivalent */
+  width: 400px;
+  height: 350px;
+  object-fit: cover;
 }
 
 .artwork-title {
-  font-size: 1.25rem; /* text-xl equivalent */
+  font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 0.5rem; /* mb-2 equivalent */
+  margin-bottom: 0.5rem;
 }
 
 .artwork-description {
-  color: #2d3748; /* text-gray-800 equivalent */
-  margin-bottom: 1rem; /* mb-4 equivalent */
+  color: #2d3748;
+  margin-bottom: 1rem;
 }
 
 .artwork-buttons {
@@ -31,25 +31,25 @@
 }
 
 .artwork-button {
-  padding: 0.5rem 1rem; /* px-4 py-2 equivalent */
-  border-radius: 0.375rem; /* rounded-md equivalent */
+  padding: 0.5rem 1rem; 
+  border-radius: 0.375rem;
   cursor: pointer;
 }
 
 .artwork-button-edit {
-  background-color: #2563eb; /* bg-blue-600 equivalent */
+  background-color: #2563eb;
   color: #fff;
 }
 
 .artwork-button-edit:hover {
-  background-color: #1d4ed8; /* hover:bg-blue-700 equivalent */
+  background-color: #1d4ed8;
 }
 
 .artwork-button-delete {
-  background-color: #dc2626; /* bg-red-600 equivalent */
+  background-color: #dc2626;
   color: #fff;
 }
 
 .artwork-button-delete:hover {
-  background-color: #b91c1c; /* hover:bg-red-700 equivalent */
+  background-color: #b91c1c;
 }

@@ -6,6 +6,7 @@
   width: 100%;
   font-size: 0.75rem;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
 }
 
 .footer p {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/AddArtwork.css";
-import apiClient from '../apiClient'; // Import apiClient
+import apiClient from '../apiClient';
 
 /**
  * @param {{ artwork?: Artwork }} props
@@ -9,21 +9,18 @@ import apiClient from '../apiClient'; // Import apiClient
 function AddArtwork({ artwork }) {
   const [title, setTitle] = useState(artwork?.title || "");
   const [description, setDescription] = useState(artwork?.description || "");
-  const [imageUrl, setImageUrl] = useState(artwork?.imageUrl || "");
-  const [linktosite, setLinkToSite] = useState(artwork?.linktosite || ""); // New state for linktosite
-  const [status, setStatus] = useState(artwork?.status || false); // New state for status
+  const [image_url, setImageUrl] = useState(artwork?.imageUrl || "");
+  const [linktosite, setLinkToSite] = useState(artwork?.linktosite || "");
+  const [status, setStatus] = useState(artwork?.status || false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newArtwork = { title, description, imageUrl, linktosite, status }; // Include new fields
-
+    const newArtwork = { title, description, image_url, linktosite, status };
     try {
       if (artwork) {
-        // Update existing artwork
         await apiClient.put(`/artworks/${artwork.id}`, newArtwork);
       } else {
-        // Add new artwork
         await apiClient.post('/artworks', newArtwork);
       }
       navigate("/");
@@ -61,7 +58,7 @@ function AddArtwork({ artwork }) {
           <label className="add-artwork-label">Image URL</label>
           <input
             type="text"
-            value={imageUrl}
+            value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
             className="add-artwork-input"
             required

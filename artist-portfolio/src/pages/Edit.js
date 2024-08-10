@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../assets/EditArtwork.css";
-import apiClient from "../apiClient"; // Import apiClient
+import apiClient from "../apiClient";
 
 function EditArtwork() {
   const [artwork, setArtwork] = useState({
     title: "",
     description: "",
-    imageUrl: "",
+    image_url: "",
     linktosite: "",
     status: false
   });
-  const { id } = useParams(); // Get ID from URL
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function EditArtwork() {
         setArtwork(response.data);
       } catch (error) {
         console.error('Error fetching artwork:', error);
-        navigate("/"); // Redirect if artwork not found
+        navigate("/");
       }
     };
 
@@ -37,7 +37,7 @@ function EditArtwork() {
     e.preventDefault();
     try {
       await apiClient.put(`/artworks/${id}`, artwork);
-      navigate("/"); // Redirect after saving
+      navigate("/");
     } catch (error) {
       console.error('Error updating artwork:', error);
     }
@@ -76,7 +76,7 @@ function EditArtwork() {
             type="text"
             id="imageUrl"
             name="imageUrl"
-            value={artwork.imageUrl}
+            value={artwork.image_url}
             onChange={handleChange}
             className="edit-artwork-input"
             required
