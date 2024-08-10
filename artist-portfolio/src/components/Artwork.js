@@ -1,10 +1,10 @@
 import React from "react";
 import "../assets/Artwork.css";
 
-function Artwork({ title, description, imageUrl, onDelete, onEdit }) {
+function Artwork({ title, description, image_url, onDelete, onEdit }) {
   return (
     <div className="artwork-container">
-      <img src={imageUrl} alt={title} className="artwork-image" />
+      <img src={image_url} alt={title} className="artwork-image" />
       <div className="p-4">
         <h3 className="artwork-title">{title}</h3>
         <p className="artwork-description">{description}</p>

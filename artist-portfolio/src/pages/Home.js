@@ -58,7 +58,7 @@ function Home() {
                   <Artwork
                     title={artwork.title}
                     description={artwork.description}
-                    imageUrl={artwork.imageUrl}
+                    image_url={artwork.image_url}
                     onDelete={() => handleDeleteArtwork(artwork.id)}
                     onEdit={() => handleEditArtwork(artwork.id)}
                   />
