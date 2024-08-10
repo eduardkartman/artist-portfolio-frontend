@@ -34,3 +34,10 @@ A React application for managing an artist's portfolio. The app allows users to 
 ## 2. Run
 
 - **Run** : npm start
+
+## 3. Install axios for linking the frontend with the backend
+- **Axios** : npm install axios
+
+## Modifying the port for frontend
+- npm install cross-env
+- set PORT=3001 && npm start
