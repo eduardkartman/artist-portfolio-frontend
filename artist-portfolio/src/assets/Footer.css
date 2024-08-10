@@ -1,15 +1,8 @@
 .footer {
   background-color: #333;
-  color: #fff;
-  padding: 0.5rem;
+  color: white;
   text-align: center;
+  position: fixed;
   width: 100%;
-  font-size: 0.75rem;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
-  position: absolute;
-}
-
-.footer p {
-  margin: 0;
-  font-size: 0.75rem;
+  bottom: 0;
 }

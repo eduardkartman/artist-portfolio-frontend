@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/AppHeader.css";
 
 function AppHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header className="app-header">
       <div className="app-header-container">
         <h1 className="app-header-title">Artist Portfolio</h1>
-        <nav>
-          <Link to="/" className="app-header-link">
+        <nav className={`app-header-nav ${menuOpen ? "open" : ""}`}>
+          <Link to="/" className="app-header-link" onClick={toggleMenu}>
             Home
           </Link>
         </nav>
+        <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </header>
   );

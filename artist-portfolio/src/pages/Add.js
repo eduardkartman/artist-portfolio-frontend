@@ -1,38 +1,56 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../assets/AddArtwork.css";
-import apiClient from '../apiClient';
+import apiClient from "../apiClient";
 
-/**
- * @param {{ artwork?: Artwork }} props
- */
 function AddArtwork({ artwork }) {
   const [title, setTitle] = useState(artwork?.title || "");
   const [description, setDescription] = useState(artwork?.description || "");
-  const [image_url, setImageUrl] = useState(artwork?.imageUrl || "");
+  const [image_url, setImageUrl] = useState(artwork?.image_url || "");
   const [linktosite, setLinkToSite] = useState(artwork?.linktosite || "");
   const [status, setStatus] = useState(artwork?.status || false);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id && !artwork) {
+      const fetchArtwork = async () => {
+        try {
+          const response = await apiClient.get(`/artworks/${id}`);
+          const fetchedArtwork = response.data;
+          setTitle(fetchedArtwork.title);
+          setDescription(fetchedArtwork.description);
+          setImageUrl(fetchedArtwork.image_url);
+          setLinkToSite(fetchedArtwork.linktosite);
+          setStatus(fetchedArtwork.status);
+        } catch (error) {
+          console.error("Error fetching artwork:", error);
+          navigate("/");
+        }
+      };
+      fetchArtwork();
+    }
+  }, [id, artwork, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newArtwork = { title, description, image_url, linktosite, status };
     try {
-      if (artwork) {
-        await apiClient.put(`/artworks/${artwork.id}`, newArtwork);
+      if (artwork || id) {
+        await apiClient.put(`/artworks/${artwork?.id || id}`, newArtwork);
       } else {
-        await apiClient.post('/artworks', newArtwork);
+        await apiClient.post("/artworks", newArtwork);
       }
       navigate("/");
     } catch (error) {
-      console.error('Error saving artwork:', error);
+      console.error("Error saving artwork:", error);
     }
   };
 
   return (
     <div className="add-artwork-container">
       <h2 className="add-artwork-title">
-        {artwork ? "Edit Artwork" : "Add New Artwork"}
+        {artwork || id ? "Edit Artwork" : "Add New Artwork"}
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -85,7 +103,7 @@ function AddArtwork({ artwork }) {
           </select>
         </div>
         <button type="submit" className="add-artwork-button">
-          {artwork ? "Save Changes" : "Add Artwork"}
+          {artwork || id ? "Save Changes" : "Add Artwork"}
         </button>
       </form>
     </div>

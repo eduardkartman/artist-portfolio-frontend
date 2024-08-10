@@ -4,8 +4,10 @@ import "../assets/Artwork.css";
 function Artwork({ title, description, image_url, onDelete, onEdit }) {
   return (
     <div className="artwork-container">
-      <img src={image_url} alt={title} className="artwork-image" />
-      <div className="p-4">
+      <div className="artwork-image-wrapper">
+        <img src={image_url} alt={title} className="artwork-image" />
+      </div>
+      <div className="artwork-content">
         <h3 className="artwork-title">{title}</h3>
         <p className="artwork-description">{description}</p>
         <div className="artwork-buttons">

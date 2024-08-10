@@ -42,19 +42,21 @@ function Home() {
         <h2 className="page-title">My Portfolio</h2>
         {artworks.length === 0 ? (
           <div className="no-artworks-message">
-            <p>You have no artworks yet.</p>
+            <p>No artworks available. Start adding some!</p>
             <Link to="/add" className="button-add-artwork">
               Add New Artwork
             </Link>
           </div>
         ) : (
           <>
-            <Link to="/add" className="button-add-artwork">
-              Add New Artwork
-            </Link>
+            <div className="button-container">
+              <Link to="/add" className="button-add-artwork">
+                Add New Artwork
+              </Link>
+            </div>
             <Row>
               {artworks.map((artwork) => (
-                <Col key={artwork.id} md={4} sm={6}>
+                <Col key={artwork.id} md={4} sm={6} className="mb-4">
                   <Artwork
                     title={artwork.title}
                     description={artwork.description}

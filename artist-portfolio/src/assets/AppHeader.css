@@ -11,6 +11,7 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .app-header-title {
@@ -18,8 +19,70 @@
   font-weight: bold;
 }
 
+.app-header-nav {
+  display: flex;
+  align-items: center;
+}
+
 .app-header-link {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
+  margin-left: 2rem;
+  transition: color 0.3s ease;
+}
+
+.app-header-link:hover {
+  color: #f97316;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .app-header-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #333;
+    width: 100%;
+    text-align: right;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .app-header-nav.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
 }

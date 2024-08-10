@@ -4,7 +4,7 @@ import "../assets/Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p>&copy; 2024 Eduard Kartman - Artist Portfolio. All rights reserved.</p>
+      <p className="my-2">&copy; 2024 Eduard Kartman - Artist Portfolio. All rights reserved.</p>
     </footer>
   );
 }
