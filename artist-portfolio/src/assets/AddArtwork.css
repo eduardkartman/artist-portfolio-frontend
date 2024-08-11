@@ -23,6 +23,42 @@
   display: block;
 }
 
+.info-icon {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 1.125rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.info-icon .fa-info-circle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.info-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width:max-content;
+  transform: translateX(-10%);
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  white-space: wrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+  text-align: center;
+}
+
 .add-artwork-input,
 .add-artwork-textarea,
 .add-artwork-select {

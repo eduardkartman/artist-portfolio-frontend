@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import AddArtwork from "./pages/Add";
 import EditArtwork from "./pages/Edit";
 import AppHeader from "./components/AppHeader";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (
