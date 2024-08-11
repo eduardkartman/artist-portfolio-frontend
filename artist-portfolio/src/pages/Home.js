@@ -56,7 +56,7 @@ function Home() {
               {artworks.map((artwork) => (
                 <Col key={artwork.id} md={4} sm={6} className="mb-4">
                   <Artwork
-                    artwork={artwork}  // Pass the entire artwork object
+                    artwork={artwork}
                     onDelete={handleDeleteArtwork}
                     onEdit={handleEditArtwork}
                   />
