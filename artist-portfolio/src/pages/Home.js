@@ -14,7 +14,8 @@ function Home() {
     const fetchArtworks = async () => {
       try {
         const response = await apiClient.get('/artworks');
-        setArtworks(response.data);
+        const sortedArtworks = response.data.sort((a, b) => b.status - a.status);
+        setArtworks(sortedArtworks);
       } catch (error) {
         console.error('Error fetching artworks:', error);
       }

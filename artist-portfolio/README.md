@@ -41,3 +41,6 @@ A React application for managing an artist's portfolio. The app allows users to 
 ## Modifying the port for frontend
 - npm install cross-env
 - set PORT=3001 && npm start
+
+## Icons
+- npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons

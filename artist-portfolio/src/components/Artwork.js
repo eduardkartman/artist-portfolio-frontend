@@ -8,7 +8,10 @@ function Artwork({ artwork, onDelete, onEdit }) {
       <div className="p-4">
         <h3 className="artwork-title">{artwork.title}</h3>
         <p className="artwork-description">{artwork.description}</p>
-        <a href={artwork.linktosite} target="_blank" rel="noopener noreferrer" className="artwork-link">
+        <a href={/^https?:\/\//.test(artwork.linktosite) ? artwork.linktosite : `http://${artwork.linktosite}`}
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="artwork-link">
           Visit Site
         </a>
         <div className="artwork-buttons">
