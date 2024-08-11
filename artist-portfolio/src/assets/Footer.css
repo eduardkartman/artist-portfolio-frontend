@@ -2,8 +2,8 @@
   background-color: #767676;
   color: white;
   text-align: center;
-  position:relative;
+  position:absolute;
   width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   bottom: 0;
 }

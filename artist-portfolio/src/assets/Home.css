@@ -42,3 +42,16 @@
   outline: 2px solid #ea580c;
   outline-offset: 2px;
 }
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.loading-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  color: #f97316;
+}
