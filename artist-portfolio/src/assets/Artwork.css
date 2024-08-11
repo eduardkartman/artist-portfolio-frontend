@@ -4,9 +4,10 @@
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2rem;
-  margin-top: 5rem;;
+  margin-top: 5rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .artwork-container:hover {
@@ -81,4 +82,10 @@
 .artwork-button-delete:hover {
   background-color: #b91c1c;
   transform: scale(1.05);
+}
+
+/* Inactive artwork overlay */
+.inactive-artwork {
+  filter: grayscale(100%);
+  opacity: 0.6;
 }
