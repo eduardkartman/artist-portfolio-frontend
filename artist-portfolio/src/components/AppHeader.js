@@ -17,7 +17,7 @@ function AppHeader() {
         <h1 className="app-header-title">Artist Portfolio</h1>
         <nav className={`app-header-nav ${menuOpen ? "open" : ""}`}>
           <Link to="/" className="app-header-link" onClick={toggleMenu}>
-            <FontAwesomeIcon icon={faHome} /> {/* Add the home icon */}
+            <FontAwesomeIcon icon={faHome} />
           </Link>
         </nav>
         <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
