@@ -2,8 +2,24 @@
   background-color: #767676;
   color: white;
   text-align: center;
-  position:absolute;
   width: 100%;
   height: 2rem;
+  position: relative;
   bottom: 0;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
 }
