@@ -4,10 +4,8 @@
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2rem;
-  margin-bottom: 2rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
 }
 
 .artwork-container:hover {

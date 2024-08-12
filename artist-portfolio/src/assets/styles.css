@@ -1,8 +1,16 @@
+/* Base styles for the entire application */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+html, #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -11,23 +19,22 @@ header {
   padding: 1rem;
   text-align: center;
 }
-
 header nav a {
   color: black;
   margin: 0 10px;
   text-decoration: none;
 }
-
 footer {
   background-color: #333;
-  color: black;
+  color: white;
   text-align: center;
   padding: 1rem;
+  width: 100%;
   position: fixed;
   bottom: 0;
-  width: 100%;
 }
 
+/* Grid for displaying artworks */
 .artworks-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -35,6 +42,7 @@ footer {
   padding: 1rem;
 }
 
+/* General form styles */
 form div {
   margin-bottom: 1rem;
 }
@@ -44,6 +52,10 @@ textarea {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  color: #333;
 }
 
 button {
@@ -52,4 +64,36 @@ button {
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
+}
+
+/* Transitions and hover effects */
+button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Tooltip styling (global because tooltips might be used across components) */
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip:hover {
+  visibility: visible;
+  opacity: 1;
 }
